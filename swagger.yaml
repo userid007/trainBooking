@@ -1,4 +1,4 @@
-openapi: "3.1.0"
+openapi: "3.0.3"
 info:
   title: "Train Booking"
   description: "REST API Documentation"
@@ -9,3 +9,76 @@ servers:
     description: Local Environment
 
 paths:
+  /coach:
+    post:
+      summary: "Create new a coach"
+      security:
+        - BearerAuth: []
+      tags:
+        - Coach
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                totalSeats:
+                  type: number
+                maxSeatsPerRow:
+                  type: number
+
+      responses:
+        200:
+          description: Coach created
+        400:
+          description: Bad request
+        500:
+          description: Internal Server Error
+
+    get:
+      summary: "Get all Coach"
+      security:
+        - BearerAuth: []
+      tags:
+        - Coach
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Returns all Coaches
+        400:
+          description: Bad request
+        500:
+          description: Internal Server Error
+
+  /coach/{id}:
+    delete:
+      summary: "Delete a coach"
+      security:
+        - BearerAuth: []
+      tags:
+        - Coach
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Coach deleted
+        400:
+          description: Bad request
+        500:
+          description: Internal Server Error

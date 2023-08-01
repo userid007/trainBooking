@@ -2,12 +2,16 @@ import mongoose from "mongoose";
 
 const coachSchema = new mongoose.Schema(
   {
-    seats: {
+    name: {
+      type: String,
+      required: true,
+    },
+    totalSeats: {
       type: Number,
       min: 1,
       required: true,
     },
-    MaxSeatsPerRow: {
+    maxSeatsPerRow: {
       type: Number,
       min: 1,
       required: true,
